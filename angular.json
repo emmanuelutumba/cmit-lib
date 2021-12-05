@@ -2,5 +2,49 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "oxygene-ui": {
+      "projectType": "library",
+      "root": "projects/oxygene-ui",
+      "sourceRoot": "projects/oxygene-ui/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/oxygene-ui/tsconfig.lib.json",
+            "project": "projects/oxygene-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/oxygene-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/oxygene-ui/src/test.ts",
+            "tsConfig": "projects/oxygene-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/oxygene-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/oxygene-ui/tsconfig.lib.json",
+              "projects/oxygene-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": "d59d77d8-6be7-404c-ba0f-dd6cae28a1ff"
+  },
+  "defaultProject": "oxygene-ui"
 }
